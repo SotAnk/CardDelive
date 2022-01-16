@@ -9,7 +9,6 @@ import java.time.format.DateTimeFormatter;
 
 import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.visible;
-import static com.codeborne.selenide.Selectors.withText;
 import static com.codeborne.selenide.Selenide.*;
 
 public class CardDeliveryTest {
@@ -25,10 +24,8 @@ public class CardDeliveryTest {
         $("[data-test-id='phone'] input").setValue("+78884938474");
         $("[data-test-id='agreement']").click();
         $$("button").find(exactText("Забронировать")).click();
-        $(withText("Успешно!")).shouldBe(visible, Duration.ofSeconds(15));
-        $(".notification__content")
-                .shouldHave(exactText("Встреча успешно забронирована на " + date))
-                .shouldBe(visible, Duration.ofSeconds(15));
+        $(".notification__content").shouldBe(visible, Duration.ofSeconds(15))
+                .shouldHave(exactText("Встреча успешно забронирована на " + date));
+
     }
 }
-
